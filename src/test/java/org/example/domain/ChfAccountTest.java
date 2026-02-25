@@ -1,13 +1,22 @@
 package org.example.domain;
 
-// Exercise 2 Alex Issue A ChfAccountTest Class, Part 2
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ChfAccountTest {
     @Test
-    void simpleTest() {
-        ChfAccount alexAccount = new ChfAccount("Alex");
-        Double actualBalance = alexAccount.getBalance();
-        assertEquals(0.0, actualBalance);
+    void depositTest() {
+        ChfAccount aliceAccount = new ChfAccount("Alex");
+        Amount oneHundredCHF = Amount.of(100, Currency.CHF);
+        aliceAccount.deposit(oneHundredCHF);
+        Amount actualBalance = aliceAccount.getBalance();
+        assertEquals(actualBalance, oneHundredCHF);
+    }
+    @Test
+    void currencyMismatchTest() {
+        ChfAccount aliceAccount = new ChfAccount("Alex");
+        Amount oneHundredUSD = Amount.of(100, Currency.USD);
+        assertThrows(Exception.class, () -> {
+            aliceAccount.deposit(oneHundredUSD);});
     }
 }

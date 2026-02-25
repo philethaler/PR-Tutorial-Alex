@@ -8,8 +8,12 @@ public class ChfAccount {
         this.name = name;
         this.balance = 0.0;
     }
-    public Double getBalance() {
-        return this.balance;
+    public void deposit(Amount amount) {
+        if (amount.currency() != Currency.CHF) {throw new RuntimeException();}
+        this.balance += amount.amount();
+    }
+    public Amount getBalance() {
+        return Amount.of(this.balance, Currency.CHF);
     }
     public String toString() {
         return this.name + " has " + this.balance;
