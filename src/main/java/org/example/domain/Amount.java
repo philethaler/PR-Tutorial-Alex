@@ -14,9 +14,7 @@ package org.example.domain;
             return new Amount(amountInCents, currency);
         }
 
-        public double amount() {
-            return amountInCents / 100d;
-        }
+        public long amount() {return amountInCents; }
 
         @Override
         public String toString() {
