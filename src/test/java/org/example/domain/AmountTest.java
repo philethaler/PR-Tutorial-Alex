@@ -9,9 +9,9 @@ public class AmountTest {
 
     @Test
     void amountConversionTest() {
-        Amount oneHundredUSD = Amount.of(100.0, Currency.USD);
-        double amount = oneHundredUSD.amount();
+        Amount oneHundredCHF = Amount.of(100.0, Currency.CHF);
+        double amount = oneHundredCHF.amount();
 
-        assertEquals(100.0, amount);
+        assertEquals(10000.0, amount);
     }
 }
